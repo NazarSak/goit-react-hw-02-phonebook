@@ -1,5 +1,8 @@
 import shortid from 'shortid';
 import React, { Component } from 'react';
+import { nanoid } from 'nanoid';
+
+
 
 export class Form extends Component {
   state = {
@@ -7,6 +10,9 @@ export class Form extends Component {
     number: '',
   };
 
+
+
+  
   nameInputId = shortid.generate()
 
   handleSubmit = e => {
@@ -67,3 +73,6 @@ export class Form extends Component {
     );
   }
 }
+
+
+

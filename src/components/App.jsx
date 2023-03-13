@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Form } from './form/Form';
-// import shortid from 'shortid';
 import { nanoid } from 'nanoid';
+import { Form } from './form/Form';
+
+import ContactList from './contactList/ContactList';
+import Filter from './filter/Filter';
 
 export class App extends Component {
   state = {
@@ -9,49 +11,46 @@ export class App extends Component {
     filter: '',
   };
 
-  // handleSubmit = ({ name, number }) => {
-  //  const nameId = shortid.generate()
-  //   const string = this.state.contacts.filter(el => el.name === name);
-  //   string.length !== 0
-  //     ? this.hendleCoincidence(name)
-  //     : this.setState(({ contacts }) => ({
-  //         contacts: [...contacts, { id: nameId, name, number }],
-  //       }));
-  // };
+  handleSubmit = ({ name, number }) => {
+    const ID = nanoid();
+    const string = this.state.contacts.filter(el => el.name === name);
+    string.length !== 0
+      ? this.hendleCoincidence(name)
+      : this.setState(({ contacts }) => ({
+          contacts: [...contacts, { id: ID, name, number }],
+        }));
+  };
 
+  hendleCoincidence(name) {
+    alert(`${name} is already in contacts`);
+  }
 
-
-
-
-  formSubmitHandler = data => {
-
-    const contact = {
-      id: nanoid(),
-      name: data.name,
-      number: data.number,
-    };
-
-    this.setState(({ contacts }) => ({
-      contacts: [...contacts, contact],
-    }));
+  hendleSearch = event => {
+    const value = event.currentTarget.value.toLowerCase().trim();
+    this.setState({ filter: value });
   };
 
 
 
-
-
-  // formSubmitHandler = data => {
-  //   console.log(data);
-  //   data.id = nanoid();
-  //   this.setState(prevState => ({
-  //     contacts: [data, ...prevState.contacts],
-  //   }));
-  // };
+  hendeleClickDelete = id => {
+    this.setState(({ contacts }) => ({
+      contacts: contacts.filter(el => el.id !== id),
+    }));
+  };
 
   render() {
+    const { contacts, filter } = this.state;
     return (
       <>
-        <Form onSubmit={this.formSubmitHandler} contacts={this.state.contacts}/>
+        <Form onSubmit={this.handleSubmit} contacts={contacts} />
+
+        <Filter filter={this.hendleSearch}  />
+
+        <ContactList
+          contacts={contacts}
+          filter={filter}
+          remove={this.hendeleClickDelete}
+        />
       </>
     );
   }
