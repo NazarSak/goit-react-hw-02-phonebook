@@ -13,7 +13,9 @@ export class App extends Component {
 
   handleSubmit = ({ name, number }) => {
     const ID = nanoid();
-    const string = this.state.contacts.filter(el => el.name === name);
+    const string = this.state.contacts.filter(
+      el => el.name.toLowerCase() === name.toLowerCase()
+    );
     string.length !== 0
       ? this.hendleCoincidence(name)
       : this.setState(({ contacts }) => ({
@@ -25,9 +27,20 @@ export class App extends Component {
     alert(`${name} is already in contacts`);
   }
 
-  hendleSearch = event => {
-    const value = event.currentTarget.value.toLowerCase().trim();
-    this.setState({ filter: value });
+  // hendleSearch = event => {
+  //   const value = event.currentTarget.value.toLowerCase().trim();
+  //   this.setState({ filter: value });
+  // };
+
+  ChangeFilter = e => {
+    this.setState({ filter: e.currentTarget.value });
+  };
+
+  searchName = () => {
+    const lowerCase = this.state.filter.toLowerCase();
+    return this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(lowerCase)
+    );
   };
 
   hendeleClickDelete = id => {
@@ -40,17 +53,18 @@ export class App extends Component {
     const { contacts, filter } = this.state;
     return (
       <>
-        <Header title={"Phonebook"}/>
+        <Header title={'Phonebook'} />
         <Form onSubmit={this.handleSubmit} contacts={contacts} />
-        <Header title={"Contacts"}/>
-        <Filter filter={this.hendleSearch} />
-
-        <ContactList
-          contacts={contacts}
-          filter={filter}
-          remove={this.hendeleClickDelete}
-        />
+        <Header title={'Contacts'} />
+        <Filter OnChangeFilter={this.ChangeFilter} valueFilter={filter} />
+        {contacts.length > 0 && (
+          <ContactList
+            contacts={this.searchName()}
+            // filter={filter}
+            remove={this.hendeleClickDelete}
+          />
+        )}
       </>
-    ); 
+    );
   }
 }

@@ -3,7 +3,7 @@ import shortid from 'shortid';
 import React from 'react';
 import { FilterDiv,FilterLabel,FilterInput } from './filter.styled';
 
-const Filter = ({ filter }) => {
+const Filter = ({ OnChangeFilter,valueFilter }) => {
   const filterID = shortid.generate();
 
   return (
@@ -13,7 +13,8 @@ const Filter = ({ filter }) => {
         type="text"
         name="name"
         id={filterID}
-        onChange={filter}
+        onChange={OnChangeFilter}
+        value={valueFilter}
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
@@ -24,7 +25,8 @@ const Filter = ({ filter }) => {
 };
 
 Filter.propTypes = {
-  filter: PropTypes.func.isRequired,
+  OnChangeFilter: PropTypes.func.isRequired,
+  valueFilter:PropTypes.string.isRequired
 };
 
 export default Filter;

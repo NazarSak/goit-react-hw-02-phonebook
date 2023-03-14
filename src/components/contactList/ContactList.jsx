@@ -11,12 +11,11 @@ import {
 } from './contactList.styled';
 
 
-function ContactList({ contacts, filter, remove }) {
+function ContactList({ contacts, remove }) {
   return (
     <List>
       {contacts.map(({ id, name, number }) => {
-        const lowerCase = name.toLowerCase();
-        if (lowerCase.includes(filter)) {
+      
           return (
             <ContactLi key={id}>
               <ContactName>{name}</ContactName>:
@@ -24,16 +23,21 @@ function ContactList({ contacts, filter, remove }) {
               <DeleteBut onClick={() => remove(id)}>Delete</DeleteBut>
             </ContactLi>
           );
-        }
+        
       })}
     </List>
   );
 }
 
 ContactList.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  filter: PropTypes.string.isRequired,
-  remove: PropTypes.func.isRequired,
+  remove:PropTypes.func.isRequired,
+ contacts: PropTypes.arrayOf(
+  PropTypes.shape({
+   name: PropTypes.string.isRequired,
+   id:PropTypes.string.isRequired,
+   number:PropTypes.string.isRequired,
+  })
+ )
 };
 
 export default ContactList;
