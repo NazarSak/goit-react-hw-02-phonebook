@@ -51,6 +51,6 @@ export class App extends Component {
           remove={this.hendeleClickDelete}
         />
       </>
-    );
+    ); 
   }
 }
