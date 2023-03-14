@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const FormContact = styled.form`
-background-color: antiquewhite;
 padding: 15px;
 justify-content: center;
 display: flex;

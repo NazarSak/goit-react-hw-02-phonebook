@@ -1,6 +1,6 @@
 import shortid from 'shortid';
 import React from 'react';
-import { FilterDiv,FilterLabel } from './filter.styled';
+import { FilterDiv,FilterLabel,FilterInput } from './filter.styled';
 
 const Filter = ({ filter }) => {
   const filterID = shortid.generate();
@@ -8,7 +8,7 @@ const Filter = ({ filter }) => {
   return (
     <FilterDiv>
       <FilterLabel htmlFor={filterID}>Find contacts by name
-      <input
+      <FilterInput
         type="text"
         name="name"
         id={filterID}
