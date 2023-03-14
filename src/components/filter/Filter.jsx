@@ -1,12 +1,13 @@
 import shortid from 'shortid';
 import React from 'react';
+import { FilterDiv,FilterLabel } from './filter.styled';
 
 const Filter = ({ filter }) => {
   const filterID = shortid.generate();
 
   return (
-    <div>
-      <label htmlFor={filterID}>FInd</label>
+    <FilterDiv>
+      <FilterLabel htmlFor={filterID}>Find contacts by name
       <input
         type="text"
         name="name"
@@ -16,7 +17,8 @@ const Filter = ({ filter }) => {
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
       />
-    </div>
+      </FilterLabel>
+    </FilterDiv>
   );
 };
 
