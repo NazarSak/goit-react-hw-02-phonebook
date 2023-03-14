@@ -1,4 +1,5 @@
 import shortid from 'shortid';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { FormContact, LabelContact, FormDiv, FormInput } from './form.styled';
 
@@ -69,3 +70,7 @@ export class Form extends Component {
     );
   }
 }
+
+Form.propTypes = {
+  submit: PropTypes.func.isRequired,
+};

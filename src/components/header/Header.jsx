@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from 'prop-types';
 import { TitleWords } from "./header.styled"
 
 export const Header = ({title}) => {
@@ -6,3 +7,7 @@ export const Header = ({title}) => {
 <TitleWords>{title}</TitleWords>
    ) 
 }
+
+Header.propTypes = {
+   title: PropTypes.string.isRequired,
+ };

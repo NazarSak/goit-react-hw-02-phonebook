@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import React from 'react';
 import { FilterDiv,FilterLabel,FilterInput } from './filter.styled';
@@ -20,6 +21,10 @@ const Filter = ({ filter }) => {
       </FilterLabel>
     </FilterDiv>
   );
+};
+
+Filter.propTypes = {
+  filter: PropTypes.func.isRequired,
 };
 
 export default Filter;

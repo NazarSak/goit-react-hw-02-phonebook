@@ -1,8 +1,16 @@
-import React from "react";
-import { List,ContactLi,ContactName,ContactNumber,DeleteBut } from "./contactList.styled";
-import PropTypes from "prop-types"
+/* eslint-disable array-callback-return */
+import PropTypes from 'prop-types';
+import React from 'react';
+import {
+  List,
+  ContactLi,
+  ContactName,
+  ContactNumber,
+  DeleteBut,
+} from './contactList.styled';
 
-const ContactList = ({ contacts, filter, remove }) => {
+
+function ContactList({ contacts, filter, remove }) {
   return (
     <List>
       {contacts.map(({ id, name, number }) => {
@@ -19,12 +27,12 @@ const ContactList = ({ contacts, filter, remove }) => {
       })}
     </List>
   );
-};
+}
 
 ContactList.propTypes = {
   contacts: PropTypes.array.isRequired,
   filter: PropTypes.string.isRequired,
   remove: PropTypes.func.isRequired,
-}
+};
 
 export default ContactList;
