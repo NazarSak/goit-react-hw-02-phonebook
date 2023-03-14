@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { Form } from './form/Form';
-
+import { Header } from './header/Header';
 import ContactList from './contactList/ContactList';
 import Filter from './filter/Filter';
 
@@ -30,8 +30,6 @@ export class App extends Component {
     this.setState({ filter: value });
   };
 
-
-
   hendeleClickDelete = id => {
     this.setState(({ contacts }) => ({
       contacts: contacts.filter(el => el.id !== id),
@@ -42,9 +40,10 @@ export class App extends Component {
     const { contacts, filter } = this.state;
     return (
       <>
+        <Header title={"Phonebook"}/>
         <Form onSubmit={this.handleSubmit} contacts={contacts} />
-
-        <Filter filter={this.hendleSearch}  />
+        <Header title={"Contacts"}/>
+        <Filter filter={this.hendleSearch} />
 
         <ContactList
           contacts={contacts}

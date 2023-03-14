@@ -1,19 +1,22 @@
+import React from "react";
+import { List,ContactLi,ContactName,ContactNumber,DeleteBut } from "./contactList.styled";
+
 const ContactList = ({ contacts, filter, remove }) => {
   return (
-    <ul>
+    <List>
       {contacts.map(({ id, name, number }) => {
         const lowerCase = name.toLowerCase();
         if (lowerCase.includes(filter)) {
           return (
-            <li key={id}>
-              <p>{name}</p>
-              <span>{number}</span>
-              <button onClick={() => remove(id)}>Delete</button>
-            </li>
+            <ContactLi key={id}>
+              <ContactName>{name}</ContactName>:
+              <ContactNumber>{number}</ContactNumber>
+              <DeleteBut onClick={() => remove(id)}>Delete</DeleteBut>
+            </ContactLi>
           );
         }
       })}
-    </ul>
+    </List>
   );
 };
 
