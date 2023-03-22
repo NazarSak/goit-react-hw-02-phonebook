@@ -60,7 +60,6 @@ export class App extends Component {
         {contacts.length > 0 && (
           <ContactList
             contacts={this.searchName()}
-            // filter={filter}
             remove={this.hendeleClickDelete}
           />
         )}
